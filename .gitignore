@@ -1,0 +1,8 @@
+build
+target
+*.log
+*.bat
+gradlew
+.idea
+.gradle
+gradle

@@ -1,0 +1,11 @@
+test:
+  faker:
+    property:
+       dummy: [x, y, z]
+       simple: "hello"
+       simpleResolution: "#{hello}"
+       advancedResolution: "#{Person.hello}"
+       multipleResolution: "#{hello} #{Person.hello}"
+       resolutionWithList:
+           - "#{hello}"
+           - "#{hello2}"
