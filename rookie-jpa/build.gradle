@@ -1,0 +1,5 @@
+dependencies {
+    compile(project(":rookie-core"))
+
+    compile 'org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.Final'
+}

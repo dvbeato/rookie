@@ -8,12 +8,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-class SimpleFactory implements Factory {
-
-    private final ModelMapper modelMapper;
+public class SimpleFactory extends AbstractFactory implements Factory {
 
     SimpleFactory(ModelMapper modelMapper) {
-        this.modelMapper = modelMapper;
+        super(modelMapper);
     }
 
     SimpleFactory() {
@@ -22,18 +20,18 @@ class SimpleFactory implements Factory {
     }
 
     private void setupDefaultModelMapper() {
-        modelMapper.getConfiguration()
+        getModelMapper().getConfiguration()
                 .setFieldMatchingEnabled(true)
                 .setFieldAccessLevel(Configuration.AccessLevel.PRIVATE);
     }
 
     @Override
-    public <T> T build(TemplateFactory<T> template) {
-        return modelMapper.map(template, template.getModelClass());
+    public <T> T create(TemplateFactory<T> template) {
+        return build(template);
     }
 
     @Override
-    public <T> List<T> build(TemplateFactory<T> template, int numberOfItems) {
-        return IntStream.range(0, numberOfItems).mapToObj(value -> build(template)).collect(Collectors.toList());
+    public <T> List<T> create(TemplateFactory<T> template, int numberOfItems) {
+        return build(template, numberOfItems);
     }
 }
