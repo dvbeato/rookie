@@ -1,5 +1,7 @@
 dependencies {
     compile(project(":rookie-core"))
 
-    compile 'org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.Final'
+    compile 'org.hibernate:hibernate-entitymanager:4.3.11.Final'
+
+    testCompile 'org.hsqldb:hsqldb:2.3.3'
 }
