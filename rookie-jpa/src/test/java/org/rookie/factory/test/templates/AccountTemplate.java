@@ -17,10 +17,10 @@ public class AccountTemplate extends Template<Account> {
 
     public AccountTemplate(Factory factory) {
         super(factory);
-        number = factory.field((f) -> f.faker().numerify("#####"));
-        digit  = factory.field((f) -> f.faker().numerify("#"));
-        owner  = factory.field((f) -> f.build(new PersonTemplate(f)));
-        agency = factory.field((f) -> f.build(new AgencyTemplate(f)));
+        number = field((f) -> f.faker().numerify("#####"));
+        digit  = field((f) -> f.faker().numerify("#"));
+        owner  = field((f) -> f.build(new PersonTemplate(f)));
+        agency = field((f) -> f.build(new AgencyTemplate(f)));
     }
 
     public AccountTemplate number(String number) {

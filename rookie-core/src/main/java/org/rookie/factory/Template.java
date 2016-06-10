@@ -3,6 +3,7 @@ package org.rookie.factory;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
+import java.util.function.Function;
 
 public abstract class Template<T> {
 
@@ -17,6 +18,10 @@ public abstract class Template<T> {
 
     public Class<T> getModelClass() {
         return this.modelClass;
+    }
+
+    public <R> TemplateField<R> field(Function<Factory, R> template) {
+        return factory.field(template);
     }
 
     public T build() {

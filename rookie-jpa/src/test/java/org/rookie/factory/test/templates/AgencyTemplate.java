@@ -18,9 +18,9 @@ public class AgencyTemplate extends Template<Agency> {
 
     public AgencyTemplate(Factory factory) {
         super(factory);
-        number = factory.field((f) -> f.faker().numerify("#####"));
-        digit  = factory.field((f) -> f.faker().numerify("#"));
-        bank   = factory.field((f) -> f.create(new BankTemplate(f)));
+        number = field((f) -> f.faker().numerify("#####"));
+        digit  = field((f) -> f.faker().numerify("#"));
+        bank   = field((f) -> f.create(new BankTemplate(f)));
     }
 
     public AgencyTemplate number(String number) {

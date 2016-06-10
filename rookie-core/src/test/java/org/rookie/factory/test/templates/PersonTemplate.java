@@ -14,9 +14,9 @@ public class PersonTemplate extends Template<Person> {
 
     public PersonTemplate(Factory factory) {
         super(factory);
-        name     = factory.field( (f) -> f.faker().name().fullName()             );
-        age      = factory.field( (f) -> f.faker().number().numberBetween(1, 90) );
-        document = factory.field( (f) -> f.faker().numerify("###.###.###-##")    );
+        name     = field( (f) -> f.faker().name().fullName()             );
+        age      = field( (f) -> f.faker().number().numberBetween(1, 90) );
+        document = field( (f) -> f.faker().numerify("###.###.###-##")    );
     }
 
     public PersonTemplate pessoaFisica() {

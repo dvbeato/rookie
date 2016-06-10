@@ -13,8 +13,8 @@ public class BankTemplate extends Template<Bank> {
 
     public BankTemplate(Factory factory) {
         super(factory);
-        number = factory.field( (f) -> f.faker().number().randomNumber(3,true) );
-        name   = factory.field( (f) -> f.faker().company().name()              );
+        number = field( (f) -> f.faker().number().randomNumber(3,true) );
+        name   = field( (f) -> f.faker().company().name()              );
     }
 
     public Long getNumber() {
