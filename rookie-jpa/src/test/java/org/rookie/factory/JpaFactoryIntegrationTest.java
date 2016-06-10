@@ -3,46 +3,58 @@ package org.rookie.factory;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.modelmapper.ModelMapper;
+import org.rookie.factory.test.model.Agency;
 import org.rookie.factory.test.model.Person;
+import org.rookie.factory.test.templates.AgencyTemplate;
 import org.rookie.factory.test.templates.PersonTemplate;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
+import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.nullValue;
 import static org.hamcrest.core.IsNot.not;
 
-public class JpaFactoryIntegrationTest {
+public class JpaFactoryIntegrationTest extends IntegrationTest {
 
-    private JpaFactory jpaFactory;
-    private EntityManager em;
-    private EntityTransaction transaction;
-    private EntityManagerFactory entityManagerFactory;
+    private Factory factory = new JpaFactory(em);
 
     @Before
     public void setUp() throws Exception {
-        entityManagerFactory = Persistence.createEntityManagerFactory("persistence-test");
-        em = entityManagerFactory.createEntityManager();
-        jpaFactory = new JpaFactory(new ModelMapper(), em);
-        transaction = em.getTransaction();
         transaction.begin();
     }
 
     @Test
     public void testJpaFactoryCreateMethod() throws Exception {
-        Person person = jpaFactory.create(new PersonTemplate());
+        Person person = new PersonTemplate(factory).create();
         assertThat(person.getId(), not(nullValue()));
+    }
+
+    @Test
+    public void testJpaEmbeddedTemplate() throws Exception {
+        Agency agency = new AgencyTemplate(factory).create();
+        assertThat(agency.getId(), not(nullValue()));
+        assertThat(agency.getBank().getId(), not(nullValue()));
+    }
+
+    @Test
+    public void testJpaCreateListTemplate() throws Exception {
+        List<Agency> agencies = new AgencyTemplate(factory).create(10);
+
+        assertThat(agencies.size(), equalTo(10));
+
+        for(Agency agency : agencies) {
+            assertThat(agency.getId(), not(nullValue()));
+            assertThat(agency.getBank().getId(), not(nullValue()));
+        }
     }
 
     @After
     public void tearDown() throws Exception {
         em.flush();
         transaction.commit();
-        entityManagerFactory.close();
     }
 }

@@ -5,6 +5,9 @@
     <persistence-unit name="persistence-test" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <class>org.rookie.factory.test.model.Person</class>
+        <class>org.rookie.factory.test.model.Bank</class>
+        <class>org.rookie.factory.test.model.Agency</class>
+        <class>org.rookie.factory.test.model.Account</class>
         <properties>
 
             <property name="javax.persistence.jdbc.driver" value="org.hsqldb.jdbcDriver"/>

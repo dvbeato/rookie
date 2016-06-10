@@ -1,13 +1,16 @@
 package org.rookie.factory.test.model;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Account extends BaseModel {
 
     private String number;
     private String digit;
+    @ManyToOne
     private Person owner;
+    @ManyToOne
     private Agency agency;
 
     protected Account(){}

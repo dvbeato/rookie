@@ -1,12 +1,14 @@
 package org.rookie.factory.test.model;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Agency extends BaseModel {
 
     private String number;
     private String digit;
+    @ManyToOne
     private Bank bank;
 
     protected Agency() {

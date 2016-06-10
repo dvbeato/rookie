@@ -18,12 +18,12 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-public class TemplateFactoryTest {
-    private Factory factory = RookieModule.factory();
+public class TemplateTest {
+    private Factory factory = new SimpleFactory();
 
     @Test
     public void testBuildSimpleTemplate() throws Exception {
-        Bank bank = factory.build(new BankTemplate());
+        Bank bank = new BankTemplate(factory).build();
         assertNotNull(bank.getName());
         assertNotNull(bank.getNumber());
     }
@@ -31,7 +31,7 @@ public class TemplateFactoryTest {
     @Test
     public void testBuildList() throws Exception {
 
-        Set<Person> persons = new HashSet<>(factory.build(new PersonTemplate().pessoaFisica().age(20), 10));
+        Set<Person> persons = new HashSet<>(new PersonTemplate(factory).pessoaFisica().age(20).buid(10));
 
         assertTrue(persons.size() == 10);
         for(Person person : persons) {
@@ -45,7 +45,7 @@ public class TemplateFactoryTest {
 
     @Test
     public void testBuildRandomRelationalTemplates() throws Exception {
-        Agency agency = factory.build(new AgencyTemplate());
+        Agency agency = new AgencyTemplate(factory).build();
         assertNotNull(agency);
         assertNotNull(agency.getBank());
         assertNotNull(agency.getBank().getName());
@@ -54,8 +54,8 @@ public class TemplateFactoryTest {
 
     @Test
     public void testBuildSpecifiRelationalTemplates() throws Exception {
-        Bank bank = factory.build(new BankTemplate());
-        Agency agency = factory.build(new AgencyTemplate().bank(bank));
+        Bank bank = new BankTemplate(factory).build();
+        Agency agency = new AgencyTemplate(factory).bank(bank).build();
 
         assertNotNull(agency);
         assertNotNull(agency.getBank());
@@ -64,7 +64,7 @@ public class TemplateFactoryTest {
 
     @Test
     public void testComplexObjectTemplate() throws Exception {
-        Account account = factory.build(new AccountTemplate());
+        Account account = new AccountTemplate(factory).build();
         assertNotNull(account);
         assertNotNull(account.getNumber());
         assertNotNull(account.getDigit());

@@ -1,37 +1,36 @@
 package org.rookie.factory;
 
 
-import org.modelmapper.ModelMapper;
-import org.modelmapper.config.Configuration;
-
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.Locale;
+import java.util.function.Function;
 
 public class SimpleFactory extends AbstractFactory implements Factory {
 
-    SimpleFactory(ModelMapper modelMapper) {
-        super(modelMapper);
+    public SimpleFactory(FactoryConfig factoryConfig) {
+        super(factoryConfig);
     }
 
-    SimpleFactory() {
-        this(new ModelMapper());
-        setupDefaultModelMapper();
+    public SimpleFactory(Locale locale) {
+        this(new FactoryConfig(locale));
     }
 
-    private void setupDefaultModelMapper() {
-        getModelMapper().getConfiguration()
-                .setFieldMatchingEnabled(true)
-                .setFieldAccessLevel(Configuration.AccessLevel.PRIVATE);
+    public SimpleFactory() {
+        this(new FactoryConfig());
     }
 
     @Override
-    public <T> T create(TemplateFactory<T> template) {
+    public <R> TemplateField<R> field(Function<Factory, R> template) {
+        return new TemplateField<>(this, template);
+    }
+
+    @Override
+    public <T> T create(Template<T> template) {
         return build(template);
     }
 
     @Override
-    public <T> List<T> create(TemplateFactory<T> template, int numberOfItems) {
-        return build(template, numberOfItems);
+    public <T> List<T> create(int numberOfObjects, Template<T> template) {
+        return build(numberOfObjects, template);
     }
 }

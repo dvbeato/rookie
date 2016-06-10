@@ -1,20 +1,27 @@
 package org.rookie.factory.test.templates;
 
 
-import org.rookie.factory.FactoryField;
-import org.rookie.factory.FakerField;
-import org.rookie.factory.TemplateFactory;
+import org.rookie.factory.Factory;
+import org.rookie.factory.Template;
+import org.rookie.factory.TemplateField;
 import org.rookie.factory.test.model.Account;
 import org.rookie.factory.test.model.Agency;
 import org.rookie.factory.test.model.Person;
 
-public class AccountTemplate extends TemplateFactory<Account> {
+public class AccountTemplate extends Template<Account> {
 
-    private FakerField<String> number = FakerField.of((faker) -> faker.numerify("#####"));
-    private FakerField<String> digit  = FakerField.of((faker) -> faker.numerify("#"));
-    private FactoryField<Person> owner  = FactoryField.of((factory) -> factory.build(new PersonTemplate()));
-    private FactoryField<Agency> agency = FactoryField.of((factory) -> factory.build(new AgencyTemplate()));
+    private TemplateField<String> number;
+    private TemplateField<String> digit;
+    private TemplateField<Person> owner;
+    private TemplateField<Agency> agency;
 
+    public AccountTemplate(Factory factory) {
+        super(factory);
+        number = factory.field( (f) -> f.faker().numerify("#####")    );
+        digit  = factory.field( (f) -> f.faker().numerify("#")        );
+        owner  = factory.field( (f) -> f.build(new PersonTemplate(f)) );
+        agency = factory.field( (f) -> f.build(new AgencyTemplate(f)) );
+    }
 
     public AccountTemplate number(String number) {
         this.number.setValue(number);

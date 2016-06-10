@@ -1,17 +1,27 @@
 package org.rookie.factory.test.templates;
 
 
-import org.rookie.factory.FactoryField;
-import org.rookie.factory.FakerField;
-import org.rookie.factory.TemplateFactory;
+import org.rookie.factory.Factory;
+import org.rookie.factory.Template;
+import org.rookie.factory.TemplateField;
 import org.rookie.factory.test.model.Agency;
 import org.rookie.factory.test.model.Bank;
 
-public class AgencyTemplate extends TemplateFactory<Agency> {
+import java.util.function.Function;
 
-    private FakerField<String> number = FakerField.of((faker) -> faker.numerify("#####"));
-    private FakerField<String> digit = FakerField.of((faker) -> faker.numerify("#"));
-    private FactoryField<Bank> bank = FactoryField.of((factory) -> factory.build(new BankTemplate()));
+public class AgencyTemplate extends Template<Agency> {
+
+    private TemplateField<String> number;
+    private TemplateField<String> digit;
+    private TemplateField<Bank> bank;
+
+
+    public AgencyTemplate(Factory factory) {
+        super(factory);
+        number = factory.field((f) -> f.faker().numerify("#####"));
+        digit  = factory.field((f) -> f.faker().numerify("#"));
+        bank   = factory.field((f) -> f.create(new BankTemplate(f)));
+    }
 
     public AgencyTemplate number(String number) {
         this.number.setValue(number);
@@ -25,6 +35,11 @@ public class AgencyTemplate extends TemplateFactory<Agency> {
 
     public AgencyTemplate bank(Bank bank) {
         this.bank.setValue(bank);
+        return this;
+    }
+
+    public AgencyTemplate bank(Function<Factory, Bank> bank) {
+        this.bank.setTemplate(bank);
         return this;
     }
 

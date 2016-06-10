@@ -1,31 +1,34 @@
 package org.rookie.factory;
 
 
-import org.modelmapper.ModelMapper;
+import org.rookie.faker.Faker;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public abstract class AbstractFactory implements Factory {
 
-    private final ModelMapper modelMapper;
+    private final FactoryConfig factoryConfig;
 
-    AbstractFactory(ModelMapper modelMapper) {
-        this.modelMapper = modelMapper;
+    AbstractFactory(FactoryConfig factoryConfig) {
+        Objects.requireNonNull(factoryConfig);
+        this.factoryConfig = factoryConfig;
     }
 
     @Override
-    public <T> T build(TemplateFactory<T> template) {
-        return modelMapper.map(template, template.getModelClass());
+    public Faker faker() {
+        return this.factoryConfig.getFaker();
     }
 
     @Override
-    public <T> List<T> build(TemplateFactory<T> template, int numberOfItems) {
-        return IntStream.range(0, numberOfItems).mapToObj(value -> build(template)).collect(Collectors.toList());
+    public <T> T build(Template<T> template) {
+        return factoryConfig.getModelMapper().map(template, template.getModelClass());
     }
 
-    protected ModelMapper getModelMapper() {
-        return modelMapper;
+    @Override
+    public <T> List<T> build(int numberOfObjects, Template<T> template) {
+        return IntStream.range(0, numberOfObjects).mapToObj(value -> build(template)).collect(Collectors.toList());
     }
 }

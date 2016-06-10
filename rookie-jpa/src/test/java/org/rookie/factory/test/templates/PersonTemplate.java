@@ -1,18 +1,26 @@
 package org.rookie.factory.test.templates;
 
-import org.rookie.factory.FakerField;
-import org.rookie.factory.TemplateFactory;
+import org.rookie.factory.Factory;
+import org.rookie.factory.Template;
+import org.rookie.factory.TemplateField;
 import org.rookie.factory.test.model.Person;
 
 
-public class PersonTemplate extends TemplateFactory<Person> {
+public class PersonTemplate extends Template<Person> {
 
-    private FakerField<String> name = FakerField.of((faker) -> faker.name().fullName());
-    private FakerField<Integer> age = FakerField.of((faker) -> faker.number().numberBetween(1, 90));
-    private FakerField<String> document = FakerField.of((faker) -> faker.numerify("###.###.###-##"));
+    private TemplateField<String> name;
+    private TemplateField<Integer> age;
+    private TemplateField<String> document;
+
+    public PersonTemplate(Factory factory) {
+        super(factory);
+        name = factory.field((f)     -> f.faker().name().fullName());
+        age = factory.field((f)      -> f.faker().number().numberBetween(1, 90));
+        document = factory.field((f) -> f.faker().numerify("###.###.###-##"));
+    }
 
     public PersonTemplate pessoaFisica() {
-        this.document.setTemplate((faker) -> faker.numerify("##.###.###/####-##"));
+        this.document.setTemplate((f) -> f.faker().numerify("##.###.###/####-##"));
         return this;
     }
 
