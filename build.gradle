@@ -5,6 +5,10 @@ buildscript {
     }
 }
 
+plugins {
+    id 'nebula.nebula-release' version '4.0.1'
+}
+
 allprojects {
     apply plugin: 'idea'
     apply plugin: 'eclipse'
@@ -34,10 +38,9 @@ eclipse {
     }
 }
 
-
 subprojects {
     apply plugin: 'java'
-
+    apply plugin: 'nebula.nebula-release'
     group 'org.rookie'
     version '0.0.1-alpha-SNAPSHOT'
 
