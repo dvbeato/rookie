@@ -48,9 +48,7 @@ dependencies {
     compile('org.hsqldb:hsqldb:2.3.4')
     testCompile('org.springframework.boot:spring-boot-starter-test')
     testCompile('org.assertj:assertj-core:3.4.1')
-    testCompile('org.rookie:rookie-jpa:0.0.1-alpha-SNAPSHOT') {
-        exclude group: 'org.slf4j'
-    }
+    testCompile('org.rookie:rookie-jpa:0.0.1-alpha-SNAPSHOT')
 }
 
 
