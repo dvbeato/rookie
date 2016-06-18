@@ -31,7 +31,7 @@ public class TemplateTest {
     @Test
     public void testBuildList() throws Exception {
 
-        Set<Person> persons = new HashSet<>(new PersonTemplate(factory).pessoaFisica().age(20).buid(10));
+        Set<Person> persons = new HashSet<>(new PersonTemplate(factory).juridic().age(20).build(10));
 
         assertTrue(persons.size() == 10);
         for(Person person : persons) {

@@ -28,7 +28,7 @@ public abstract class Template<T> {
         return factory.build(this);
     }
 
-    public List<T> buid(int numberOfObjects) {
+    public List<T> build(int numberOfObjects) {
         return factory.build(numberOfObjects, this);
     }
 
@@ -39,4 +39,5 @@ public abstract class Template<T> {
     public List<T> create(int numberOfObjects) {
         return factory.create(numberOfObjects, this);
     }
+
 }

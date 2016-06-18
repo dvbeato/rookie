@@ -7,6 +7,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.modelmapper.ModelMapper;
 import org.rookie.factory.test.model.Agency;
+import org.rookie.factory.test.model.Bank;
 import org.rookie.factory.test.model.Person;
 import org.rookie.factory.test.templates.AgencyTemplate;
 import org.rookie.factory.test.templates.PersonTemplate;
@@ -35,7 +36,11 @@ public class JpaFactoryIntegrationTest extends IntegrationTest {
 
     @Test
     public void testJpaEmbeddedTemplate() throws Exception {
-        Agency agency = new AgencyTemplate(factory).create();
+        AgencyTemplate agencyTemplate = new AgencyTemplate(factory);
+
+
+        Agency agency = agencyTemplate.create();
+
         assertThat(agency.getId(), not(nullValue()));
         assertThat(agency.getBank().getId(), not(nullValue()));
     }

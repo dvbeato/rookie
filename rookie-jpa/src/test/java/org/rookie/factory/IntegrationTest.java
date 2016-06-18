@@ -20,7 +20,6 @@ public class IntegrationTest {
         entityManagerFactory = Persistence.createEntityManagerFactory("persistence-test");
         em = entityManagerFactory.createEntityManager();
         transaction = em.getTransaction();
-
     }
 
     @AfterClass

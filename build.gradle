@@ -40,6 +40,7 @@ eclipse {
 
 subprojects {
     apply plugin: 'java'
+    apply plugin: 'maven'
     apply plugin: 'nebula.nebula-release'
     group 'org.rookie'
     version '0.0.1-alpha-SNAPSHOT'
@@ -50,6 +51,7 @@ subprojects {
     repositories {
         jcenter()
         mavenCentral()
+        mavenLocal()
     }
 
     dependencies {

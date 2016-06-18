@@ -1,9 +1,10 @@
-package org.rookie.factory.test.templates;
+package com.example.spring.templates;
 
+import com.example.spring.models.Person;
 import org.rookie.factory.Factory;
 import org.rookie.factory.Template;
 import org.rookie.factory.TemplateField;
-import org.rookie.factory.test.model.Person;
+
 
 
 public class PersonTemplate extends Template<Person> {
@@ -14,12 +15,12 @@ public class PersonTemplate extends Template<Person> {
 
     public PersonTemplate(Factory factory) {
         super(factory);
-        name     = field( (f) -> f.faker().name().fullName()             );
-        age      = field( (f) -> f.faker().number().numberBetween(1, 90) );
-        document = field( (f) -> f.faker().numerify("###.###.###-##")    );
+        name     = field( (f) -> f.faker().name().fullName());
+        age      = field( (f) -> f.faker().number().numberBetween(1, 90));
+        document = field( (f) -> f.faker().numerify("###.###.###-##"));
     }
 
-    public PersonTemplate juridic() {
+    public PersonTemplate pessoaFisica() {
         this.document.setTemplate((f) -> f.faker().numerify("##.###.###/####-##"));
         return this;
     }
