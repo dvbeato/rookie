@@ -84,8 +84,8 @@ public class Faker implements Resolver {
      * <p>
      * For example, the string "ABC##EFG" could be replaced with a string like "ABC99EFG".
      *
-     * @param numberString
-     * @return
+     * @param numberString number
+     * @return string
      */
     public String numerify(String numberString) {
         return fakeValuesService.numerify(numberString);
@@ -97,8 +97,8 @@ public class Faker implements Resolver {
      * <p>
      * For example, the string "12??34" could be replaced with a string like "12AB34".
      *
-     * @param letterString
-     * @return
+     * @param letterString letter
+     * @return string
      */
     public String letterify(String letterString) {
         return fakeValuesService.letterify(letterString);
@@ -108,8 +108,8 @@ public class Faker implements Resolver {
      * Applies both a {@link #numerify(String)} and a {@link #letterify(String)}
      * over the incoming string.
      *
-     * @param string
-     * @return
+     * @param string string
+     * @return string
      */
     public String bothify(String string) {
         return fakeValuesService.bothify(string);
@@ -172,8 +172,8 @@ public class Faker implements Resolver {
     /**
      * Resolves a key in the format of class.method_name
      *
-     * @param key
-     * @return
+     * @param key key
+     * @return string
      */
     public String resolve(String key) {
         String[] keySplit = key.split("\\.", 2);

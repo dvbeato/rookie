@@ -46,8 +46,8 @@ public class FakeValuesService implements FakeValuesServiceInterface {
     /**
      * Fetch a random value from an array item specified by the key
      *
-     * @param key
-     * @return
+     * @param key key
+     * @return value
      */
     public Object fetch(String key) {
         List valuesArray = (List) fetchObject(key);
@@ -57,8 +57,8 @@ public class FakeValuesService implements FakeValuesServiceInterface {
     /**
      * Same as {@link #fetch(String)} except this casts the result into a String.
      *
-     * @param key
-     * @return
+     * @param key key
+     * @return value
      */
     public String fetchString(String key) {
         return (String) fetch(key);
@@ -73,8 +73,8 @@ public class FakeValuesService implements FakeValuesServiceInterface {
      *
      * Otherwise it will just return the value as a string.
      *
-     * @param key
-     * @return
+     * @param key key
+     * @return value
      */
     @SuppressWarnings({"unchecked", "rawtypes"})
     public String safeFetch(String key) {
@@ -93,7 +93,7 @@ public class FakeValuesService implements FakeValuesServiceInterface {
      *
      * @param key key contains path to an object. Path segment is separated by
      *            dot. E.g. name.first_name
-     * @return
+     * @return value
      */
     @SuppressWarnings({"unchecked", "rawtypes"})
     public Object fetchObject(String key) {
@@ -107,11 +107,11 @@ public class FakeValuesService implements FakeValuesServiceInterface {
 
     /**
      * Returns a string with the '#' characters in the parameter replaced with random digits between 0-9 inclusive.
-     * <p/>
+     *
      * For example, the string "ABC##EFG" could be replaced with a string like "ABC99EFG".
      *
-     * @param numberString
-     * @return
+     * @param numberString number
+     * @return string
      */
     public String numerify(String numberString) {
         StringBuffer sb = new StringBuffer();
@@ -130,8 +130,8 @@ public class FakeValuesService implements FakeValuesServiceInterface {
      * Applies both a {@link #numerify(String)} and a {@link #letterify(String)}
      * over the incoming string.
      *
-     * @param string
-     * @return
+     * @param string string
+     * @return string
      */
     public String bothify(String string) {
         return letterify(numerify(string));
@@ -141,11 +141,11 @@ public class FakeValuesService implements FakeValuesServiceInterface {
     /**
      * Returns a string with the '?' characters in the parameter replaced with random alphabetic
      * characters.
-     * <p/>
+     * 
      * For example, the string "12??34" could be replaced with a string like "12AB34".
      *
-     * @param letterString
-     * @return
+     * @param letterString letter
+     * @return string
      */
     public String letterify(String letterString) {
         StringBuffer sb = new StringBuffer();
@@ -171,10 +171,10 @@ public class FakeValuesService implements FakeValuesServiceInterface {
      *
      * #{Person.hello_someone} will result in a method call to person.helloSomeone();
      *
-     * @param key
-     * @param current
-     * @param resolver
-     * @return
+     * @param key key
+     * @param current current
+     * @param resolver resolver
+     * @return string
      */
     public String resolve(String key, Object current, Resolver resolver) {
         String unresolvedString = safeFetch(key);

@@ -16,6 +16,7 @@ public class Number {
 
     /**
      * Returns a random number between 0 and 9
+     * @return digit
      */
     public int randomDigit() {
         return randomService.nextInt(9);
@@ -23,6 +24,7 @@ public class Number {
 
     /**
      * Returns a random number between 1 and 9
+     * @return digit
      */
     public int randomDigitNotZero() {
         return randomService.nextInt(8) + 1;
@@ -44,6 +46,7 @@ public class Number {
      *
      * @param numberOfDigits the number of digits the generated value should have
      * @param strict whether or not the generated value should have exactly <code>numberOfDigits</code>
+     * @return randomNumber
      */
     public long randomNumber(int numberOfDigits, boolean strict) {
         long max = (long) Math.pow(10, numberOfDigits);
@@ -57,8 +60,8 @@ public class Number {
 
     /**
      * Returns a ranbom number
+     * @return randomNumber
      */
-
     public long randomNumber() {
         int numberOfDigits = randomService.nextInt(8) + 1;
 
@@ -71,6 +74,7 @@ public class Number {
      * @param maxNumberOfDecimals maximum number of places
      * @param min minimum value
      * @param max maximum value
+     * @return random double
      */
 
     public double randomDouble(int maxNumberOfDecimals, int min, int max) {
