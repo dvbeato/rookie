@@ -6,9 +6,7 @@ buildscript {
 }
 
 plugins {
-    id 'nebula.nebula-release' version '4.0.1'
-    id 'com.gradle.plugin-publish' version '0.9.4'
-    id "nebula.maven-publish" version "4.4.4"
+    id 'nebula.netflixoss' version '3.2.3'
 }
 
 allprojects {
@@ -41,10 +39,9 @@ eclipse {
 }
 
 subprojects {
+    apply plugin: 'nebula.netflixoss'
     apply plugin: 'java'
-    apply plugin: 'maven'
-    apply plugin: 'nebula.nebula-release'
-    apply plugin: "maven-publish"
+
     group 'org.rookie'
     version '0.1-SNAPSHOT'
 
