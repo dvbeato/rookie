@@ -55,7 +55,6 @@ subprojects {
     }
 
     dependencies {
-
         compile 'org.yaml:snakeyaml:1.13'
         compile 'commons-lang:commons-lang:2.6'
         compile 'org.apache.commons:commons-lang3:3.4'
@@ -69,10 +68,4 @@ subprojects {
         testCompile 'org.mockito:mockito-all:1.8.5'
         testCompile 'commons-validator:commons-validator:1.4.1'
     }
-
 }
-
-task wrapper(type: org.gradle.api.tasks.wrapper.Wrapper) {
-    gradleVersion = '2.12'
-}
-
