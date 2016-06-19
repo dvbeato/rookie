@@ -46,7 +46,7 @@ subprojects {
     apply plugin: 'nebula.nebula-release'
     apply plugin: "maven-publish"
     group 'org.rookie'
-    version '0.0.1-alpha-SNAPSHOT'
+    version '0.1-SNAPSHOT'
 
     sourceCompatibility = 1.8
     targetCompatibility = 1.8
@@ -79,19 +79,3 @@ task wrapper(type: org.gradle.api.tasks.wrapper.Wrapper) {
     gradleVersion = '2.12'
 }
 
-publishing {
-    publications {
-        nebula(MavenPublication) {
-            pom.withXml {
-                asNode()
-                        .dependencies
-                        .dependency
-                        .findAll {
-                    // JGit is shaded inside the distribution, and we want the others to act as 'provided'
-//                    ['org.eclipse.jgit', 'spock-core', 'nebula-test', 'CodeNarc'].contains(it.artifactId.text())
-                }
-                .each { it.parent().remove(it) }
-            }
-        }
-    }
-}
