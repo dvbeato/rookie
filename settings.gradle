@@ -1,3 +1,4 @@
 rootProject.name = 'rookie'
-include 'rookie-core', 'rookie-jpa'
+include 'rookie-core', 'rookie-faker', 'rookie-jpa'
+
 
