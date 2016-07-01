@@ -1,7 +1,7 @@
 # ROOKIE
-[![Build Status](https://travis-ci.org/dvbeato/rookie.svg?branch=master)](https://travis-ci.org/dvbeato/rookie)
+[![Build Status](https://travis-ci.org/dvbeato/rookie.svg?branch=master)](https://travis-ci.org/dvbeato/rookie) [![Coverage Status](https://coveralls.io/repos/github/dvbeato/rookie/badge.svg?branch=master)](https://coveralls.io/github/dvbeato/rookie?branch=master)
 
-Rookie is a Data Factory Framework to help you create your rookie objects for application test. 
+Rookie is a Data Factory Framework to help you create your rookie objects for application test.
 
 ##GETTING STARTED
 
